@@ -23,6 +23,17 @@ def delete_user(id):  # 1件のユーザーを削除
     user.delete_instance()
 
 
+def delete(name):  # 1件のユーザーを削除
+    user = Users.get(Users.user_name == name)
+    user.delete_instance()
+    print(f"User {name} is deleted")
+
+
+def delete_user_all():  # すべてのユーザーを削除
+    for user in Users.select():
+        user.delete_instance()
+
+
 def update_user(id, user_name, user_age):  # 1件のユーザー情報を上書き
     user = Users.get(Users.id == id)
     user.user_name = user_name
@@ -30,8 +41,13 @@ def update_user(id, user_name, user_age):  # 1件のユーザー情報を上書�
     user.save()
 
 
-def find(id):  # 1件のユーザーのNane,Ageを表示
+def find_id(id):  # 1件のユーザーのNane,Ageを表示(id検索)
     user = Users.get(Users.id == id)
+    print(f"Name: {user.user_name} Age: {user.user_age}")
+
+
+def find_name(name):  # 1件のユーザーのNane,Ageを表示(name検索)
+    user = Users.get(Users.user_name == name)
     print(f"Name: {user.user_name} Age: {user.user_age}")
 
 
@@ -40,12 +56,18 @@ def show_all_users():
         print(f"Name: {user.user_name} Age: {user.user_age}")
 
 
+for user in Users.select():
+    print(f"{user.user_name}")
+
 if __name__ == "__main__":
     # main()
-    # show_all_users()
+    show_all_users()
 
     # id = 1
-    # find(id)
+    # find_id(id)
+
+    # name = "Bob"
+    # find_name(name)
 
     # <すべてのデータを表示>
     # display_users()
@@ -59,11 +81,15 @@ if __name__ == "__main__":
     # id = 1
     # find_user(id)
 
-    # <1件のユーザーを削除>
-    id = 6
-    delete_user(id)
+    # <複数のユーザーを削除>
+    # for id in range(4, 8):
+    # id = 8
+    # delete_user(id)
 
-    # <1権のユーザー情報を上書き>
+    # <すべてのユーザーを削除>
+    # delete_user_all()
+
+    # <1件のユーザー情報を上書き>
     # id = 2
     # user_name = "Tom"
     # user_age = 57
