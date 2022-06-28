@@ -23,18 +23,32 @@ def delete_user(id):  # 1件のユーザーを削除
     user.delete_instance()
 
 
-def update_user(id, user_name, user_age):
+def update_user(id, user_name, user_age):  # 1件のユーザー情報を上書き
     user = Users.get(Users.id == id)
     user.user_name = user_name
     user.user_age = user_age
     user.save()
 
 
+def find(id):  # 1件のユーザーのNane,Ageを表示
+    user = Users.get(Users.id == id)
+    print(f"Name: {user.user_name} Age: {user.user_age}")
+
+
+def show_all_users():
+    for user in Users.select():  # すべてのユーザーのName,Ageを表示
+        print(f"Name: {user.user_name} Age: {user.user_age}")
+
+
 if __name__ == "__main__":
     # main()
+    # show_all_users()
+
+    # id = 1
+    # find(id)
 
     # <すべてのデータを表示>
-    display_users()
+    # display_users()
 
     # <新しいユーザー登録を表示>
     # name = "Ken"
@@ -46,8 +60,8 @@ if __name__ == "__main__":
     # find_user(id)
 
     # <1件のユーザーを削除>
-    # id = 3
-    # delete_user(id)
+    id = 6
+    delete_user(id)
 
     # <1権のユーザー情報を上書き>
     # id = 2
