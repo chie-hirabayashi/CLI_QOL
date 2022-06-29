@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from playhouse.db_url import connect
 from peewee import Model, IntegerField, CharField, TimestampField
 
-# CharFild : よく分からない。name
+# CharFild : character?name
 # IntegerField : age, TextField : name, TimestampField : 作成日時。デフォルトとして入れた方がいい
 
 load_dotenv()  # .env読み込み(.env内にあるデータベースのURLを参照するため？)
