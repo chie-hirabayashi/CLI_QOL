@@ -26,10 +26,10 @@ def delete(name):  # 1件のユーザーを削除
     print(f"User {name} is deleted")
 
 
-def updata(user_name, user_age):  # 1件のユーザー情報を上書き
+def edit(user_name, edit_name, edit_age):  # 1件のユーザー情報を上書き
     user = Users.get(Users.user_name == user_name)
-    user.user_name = user_name
-    user.user_age = user_age
+    user.user_name = edit_name
+    user.user_age = edit_age
     user.save()
 
 
@@ -51,7 +51,7 @@ def delete_user(id):  # 1件のユーザーを削除
     user.delete_instance()
 
 
-def delete_user_all():  # すべてのユーザーを削除
+def delete_user_all():  # すべてのユーザーを削除(無限ループ処理)
     for user in Users.select():
         user.delete_instance()
 
