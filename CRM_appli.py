@@ -15,7 +15,7 @@ def command_a():
         else:
             if not age.isdecimal():
                 print("Age is not positive integer")
-            elif int(age) < 1:
+            elif int(age) < 0:
                 print("Age can't be blank")
             elif 120 < int(age):
                 print("Age is grater than 120")

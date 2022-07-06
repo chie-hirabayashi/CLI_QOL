@@ -1,4 +1,12 @@
+# from curses import KEY_CREATE
+# from asyncio.windows_events import NULL
+# from contextlib import nullcontext
+# from curses import KEY_NEXT
+# from curses.ascii import NUL
+# from http.cookiejar import MozillaCookieJar
+# from multiprocessing import managers
 from db_config import Users
+import datetime
 
 # users_data = User(user_name="Bob", user_age=50)
 # users_data.save()
@@ -68,6 +76,54 @@ def find_id(id):  # 1件のユーザーのNane,Ageを表示(id検索)
     print(f"Name: {user.user_name} Age: {user.user_age}")
 
 
+# 準備
+user = Users.get(Users.id == 1)
+print(f"Name: {user.user_name} Age: {user.user_age}")
+List = [f"{user.user_name}", f"{user.user_age}", f"{user.pub_date}"]
+print(List)
+print(type(List))
+print(List[0])
+print(type(List[0]))
+print(type(List[1]))
+
+tstr = List[2]
+tdatetime = datetime.datetime.strptime(tstr, "%Y-%m-%d %H:%M:%S")
+tdate = datetime.date(tdatetime.year, tdatetime.month, tdatetime.day)
+print(tdate)
+print(type(tdate))
+
+oneday = "1900/01/01"
+oneday_time1 = datetime.datetime.strptime(oneday, "%Y/%m/%d")
+print(oneday_time1)
+
+oneday = "2022-7-1"
+oneday_time2 = datetime.datetime.strptime(oneday, "%Y-%m-%d")
+print(oneday_time2)
+
+day = oneday_time1 - oneday_time2
+print(day.days)
+print(type(day.days))
+
+i = 365 / day.days
+print(i)
+
+list = []
+for user in Users.select():  # すべてのユーザーのName,Ageを表示
+    list.append(f"Name: {user.user_name} Age: {user.user_age}")
+print(list)
+
+
+
+
+"""
+id = 1
+user = Users.get(Users.id == id)
+print(f"{user.user_name}")
+list = [f"{user.user_name}",  f"{user.user_age}"]
+# print(f"Name: {user.user_name} Age: {user.user_age}")
+"""
+
+
 if __name__ == "__main__":
     # main()
     show_all_users()
@@ -83,7 +139,7 @@ if __name__ == "__main__":
 
     # <新しいユーザー登録を表示>
     # name = "Ken"
-    # age = 73
+    # age = 30
     # create_user(name, age)
 
     # <1件のユーザー情報を表示>
